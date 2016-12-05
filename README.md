@@ -16,13 +16,13 @@ Macromeal is the web application of a food delivery business, with the ability o
 |**id** :: *primary_key*|
 |**name** :: *string*|
 |**description** :: *string*|
+|**category** :: *string*|
 |**img** :: *string*|
 |**calories** :: *int*|
 |**protein** :: *int*|
 |**fat** :: *int*|
 |**carbs** :: *int*|
 |**price** :: *float*|
-|**category** :: *string*|
 
 <hr>
 
@@ -60,10 +60,19 @@ Macromeal is the web application of a food delivery business, with the ability o
 |USER|
 |:-:|
 |**id** :: *primary_key*|
-|**user** :: *string*|
 |**email** :: *string*|
 |**password** :: *string*|
-|**user_calories** :: *integer*|
-|**user_protein** :: *integer*|
-|**user_fat** :: *integer*|
-|**user_carbs** :: *integer*|
+|**address** :: *string*|
+|**cp** :: *string*|
+|**city** :: *string*|
+|**country** :: *string*|
+|**phone** :: *phone*|
+|**sex** :: *integer*|
+|**age** :: *integer*|
+|**height** :: *integer*|
+|**weight** :: *integer*|
+|**activity** :: *integer*|
+|**calories** :: *integer*|
+|**protein** :: *integer*|
+|**fat** :: *integer*|
+|**carbs** :: *integer*|

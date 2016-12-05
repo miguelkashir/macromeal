@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-
-  #site
+  # site
   root to: "site#index"
 
-  #users / devise
+  # users/devise
   devise_for :users
   resource :users
 
+  # products
+  resources :products
 end
