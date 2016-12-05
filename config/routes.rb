@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get '/', to: 'site#index'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #site
+  root to: "site#index"
+
+  #users / devise
+  devise_for :users
+  resource :users
+
 end

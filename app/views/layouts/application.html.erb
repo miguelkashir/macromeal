@@ -9,9 +9,22 @@
   <body>
     <nav>
       <ul>
-        <li><%= link_to 'Index', '/' %></li>
+        <li><%= link_to 'Inicio', root_path %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'Profile', '/users' %></li>
+          <li>
+            <%= link_to('Cerrar sesión', destroy_user_session_path, :method => :delete) %>
+          </li>
+        <% else %>
+          <li><%= link_to 'Registro', new_user_registration_path %></li>
+          <li><%= link_to 'Iniciar sesión', new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
+    <div class="msg">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>
