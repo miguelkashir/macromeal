@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <%= link_to 'Edit Profile', edit_users_path %>
 
-<h2>User personal info</h2>
+<h2>Datos personales</h2>
 <ul>
   <li>Email: <%= current_user.email %></li>
   <li>Nombre: <%= current_user.name %></li>
@@ -12,11 +12,19 @@
   <li>Teléfono: <%= current_user.phone %></li>
 </ul>
 
-<h2>User body info</h2>
+<h2>Características físicas</h2>
 <ul>
   <li>Sexo: <%= current_user.sex %></li>
   <li>Edad: <%= current_user.age %></li>
   <li>Altura: <%= current_user.height %></li>
   <li>Peso: <%= current_user.weight %></li>
   <li>Actividad: <%= current_user.activity %></li>
+</ul>
+
+<h2>Objetivo generado</h2>
+<ul>
+  <li>Calorías: <%= current_user.calories %></li>
+  <li>Proteínas: <%= current_user.protein %></li>
+  <li>Grasas: <%= current_user.fat %></li>
+  <li>Carbohidratos: <%= current_user.carbs %></li>
 </ul>
