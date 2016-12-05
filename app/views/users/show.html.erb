@@ -1,5 +1,22 @@
 <h1>Profile</h1>
+<%= link_to 'Edit Profile', edit_users_path %>
 
+<h2>User personal info</h2>
 <ul>
-  <li><strong>Email:</strong> <%= current_user.email %></li>
+  <li>Email: <%= current_user.email %></li>
+  <li>Nombre: <%= current_user.name %></li>
+  <li>Dirección: <%= current_user.address %></li>
+  <li>CP: <%= current_user.cp %></li>
+  <li>Ciudad: <%= current_user.city %></li>
+  <li>País: <%= current_user.country %></li>
+  <li>Teléfono: <%= current_user.phone %></li>
+</ul>
+
+<h2>User body info</h2>
+<ul>
+  <li>Sexo: <%= current_user.sex %></li>
+  <li>Edad: <%= current_user.age %></li>
+  <li>Altura: <%= current_user.height %></li>
+  <li>Peso: <%= current_user.weight %></li>
+  <li>Actividad: <%= current_user.activity %></li>
 </ul>
