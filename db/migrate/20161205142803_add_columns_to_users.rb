@@ -11,5 +11,9 @@ class AddColumnsToUsers < ActiveRecord::Migration[5.0]
     add_column :users, :height, :integer
     add_column :users, :weight, :integer
     add_column :users, :activity, :integer
+    add_column :users, :calories, :integer
+    add_column :users, :protein, :integer
+    add_column :users, :fat, :integer
+    add_column :users, :carbs, :integer
   end
 end

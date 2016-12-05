@@ -4,7 +4,21 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [
-      :name, :address, :cp, :city, :country, :phone, :sex, :age, :height, :weight, :activity
+      :name,
+      :address,
+      :cp,
+      :city,
+      :country,
+      :phone,
+      :sex,
+      :age,
+      :height,
+      :weight,
+      :activity,
+      :calories,
+      :protein,
+      :fat,
+      :carbs
     ])
   end
 end
