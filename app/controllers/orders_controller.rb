@@ -5,5 +5,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(user_id: current_user.id, id: params[:id])
+    @meals = OrderMeal.where('order_id = ?', @order.id)
   end
 end

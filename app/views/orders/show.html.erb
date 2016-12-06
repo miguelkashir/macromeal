@@ -3,3 +3,12 @@
 <p><strong>Pedido:</strong> <%= @order.id %></p>
 <p><strong>Fecha:</strong> <%= @order.created_at %></p>
 <p><strong>Total:</strong> €</p>
+
+<h2>Desglose</h2>
+<ul>
+  <% @meals.each do |meal| %>
+    <li>
+      <strong>Meal:</strong> <%= meal.id %>
+    </li>
+  <% end %>
+</ul>
