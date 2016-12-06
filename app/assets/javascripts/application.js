@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-3.1.1.min.js
+//= require bootstrap.min.js
+//= require material.min.js
+//= require ripples.min.js
+//= require macromeal.js
 //= require turbolinks
 //= require_tree .
