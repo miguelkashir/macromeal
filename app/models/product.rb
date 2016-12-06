@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
-  has_many :productmeals
-  has_many :meals, through: :productmeals
+  has_many :meal_products
+  has_many :meals, through: :meal_products
 end

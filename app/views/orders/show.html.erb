@@ -5,10 +5,11 @@
 <p><strong>Total:</strong> €</p>
 
 <h2>Desglose</h2>
-<ul>
-  <% @meals.each do |meal| %>
-    <li>
-      <strong>Meal:</strong> <%= meal.id %>
-    </li>
-  <% end %>
-</ul>
+<% @meals.each do |meal| %>
+  <p><strong>Meal:</strong> <%= meal.id %></p>
+  <ul>
+    <% meal.products.each do |product| %>
+      <li><strong>Product:</strong> <%= product.name %></li>
+    <% end %>
+  </ul>
+<% end %>

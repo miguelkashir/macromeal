@@ -1,3 +1,3 @@
-$(document).ready(function() {
-  $.material.init()
+$( document ).ready(function() {
+  $(".button-collapse").sideNav();
 });

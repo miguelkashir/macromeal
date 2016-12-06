@@ -2,51 +2,47 @@
 <html>
   <head>
     <title>Macromeal</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="container">
-      <!-- NAVBAR -->
-      <div class="row">
-        <div class="col xs-12">
-          <div class="navbar">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="<%= root_path %>">macromeal</a>
-              </div>
-              <div class="navbar-collapse collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav">
-                  <li><%= link_to 'Productos', products_path %></li>
-                  <% if user_signed_in? %>
-                    <li><%= link_to 'Tus pedidos', '/orders' %></li>
-                  <% end %>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                  <% if user_signed_in? %>
-                    <li><%= link_to 'Perfil', '/users' %></li>
-                    <li><%= link_to('Cerrar sesión', destroy_user_session_path, :method => :delete) %></li>
-                  <% else %>
-                    <li><%= link_to 'Acceso', new_user_session_path %></li>
-                    <li><%= link_to 'Registro', new_user_registration_path %></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-wrapper light-green">
+        <a href="/" class="brand-logo"> macromeal</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to 'Productos', products_path %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to 'Tus pedidos', '/orders' %></li>
+            <li><%= link_to 'Perfil', '/users' %></li>
+            <li><%= link_to('Cerrar sesión', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+            <li><%= link_to 'Acceso', new_user_session_path %></li>
+            <li><%= link_to 'Registro', new_user_registration_path %></li>
+          <% end %>
+        </ul>
+
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">Javascript</a></li>
+          <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+
       </div>
-      <!-- END NAVBAR -->
+    </nav>
+    <!-- NAVBAR -->
+
+    <div class="container">
       <!-- ALERTS -->
       <div class="row">
-        <div class="col xs-12">
+        <div class="col s12">
           <div class="msg">
             <% if notice %>
             <div class="alert alert-dismissible alert-success">
@@ -63,12 +59,14 @@
           </div>
         </div>
       </div>
-      <!-- END ALERTS -->
+      <!-- ALERTS -->
+
       <!-- BODY -->
       <div class="row">
         <%= yield %>
       </div>
-      <!-- END BODY -->
+      <!-- BODY -->
+
     </div>
   </body>
 </html>

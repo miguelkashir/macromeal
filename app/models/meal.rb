@@ -1,6 +1,6 @@
 class Meal < ApplicationRecord
-  has_many :productmeals
-  has_many :products, through: :productmeals
-  has_many :ordermeals
-  has_many :orders, through: :ordermeals
+  has_many :order_meals
+  has_many :meals, through: :order_meals
+  has_many :meal_products
+  has_many :products, through: :meal_products
 end
