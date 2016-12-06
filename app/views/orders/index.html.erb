@@ -1,0 +1,13 @@
+<h1>Tus pedidos</h1>
+
+<% if @orders.length > 0 %>
+  <ul>
+    <% @orders.each do |order| %>
+      <li>
+        <%= link_to "Pedido #{order.id} / Fecha: #{order.created_at} / Total: €", "/orders/#{order.id}" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aún no has hecho ningún pedido!</p>
+<% end %>
