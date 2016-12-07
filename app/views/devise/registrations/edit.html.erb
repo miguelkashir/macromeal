@@ -1,98 +1,132 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="col s12">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <h1>Perfil</h1>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <h3>Datos de cuenta</h3>
+
+    <div class="field">
+      <label for="user[email]">Email</label>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
+
+    <div class="field">
+      <label for="user[password]">Contraseña</label>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <label for="user[password_confirmation]">Repetir contraseña</label>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <label for="user[current_password]">Contraseña actual</label>
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>
+
+    <h3>Datos personales</h3>
+
+
+    <div class="field">
+      <label for="user[name]">Nombre</label>
+      <%= f.text_field :name, autocomplete: "on" %>
+    </div>
+
+    <div class="field">
+      <label for="user[address]">Dirección</label>
+      <%= f.text_field :address, autocomplete: "on" %>
+    </div>
+
+    <div class="field">
+      <label for="user[cp]">Código postal</label>
+      <%= f.text_field :cp, autocomplete: "on" %>
+    </div>
+
+    <div class="field">
+      <label for="user[city]">Ciudad</label>
+      <%= f.text_field :city, autocomplete: "on" %>
+    </div>
+
+    <div class="field">
+      <label for="user[country]">País</label>
+      <%= f.text_field :country, autocomplete: "on" %>
+    </div>
+
+    <div class="field">
+      <label for="user[phone]">Teléfono</label>
+      <%= f.text_field :phone, autocomplete: "on", type:'tel' %>
+    </div>
+
+    <h3>Datos físicos</h3>
+
+    <div class="field">
+      <label for="user[sex]">Sexo</label>
+      <select name="user[sex]" id="user_sex">
+        <option value="0" <% if current_user.sex == 0 %>selected<% end %>>Masculino</option>
+        <option value="1" <% if current_user.sex == 1 %>selected<% end %>>Femenino</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="user[age]">Edad</label>
+      <%= f.text_field :age, autocomplete: "on", type:'number' %>
+    </div>
+
+    <div class="field">
+      <label for="user[height]">Altura (en cms)</label>
+      <%= f.text_field :height, autocomplete: "on", type:'number' %>
+    </div>
+
+    <div class="field">
+      <label for="user[weight]">Peso (en kgs)</label>
+      <%= f.text_field :weight, autocomplete: "on", type:'number' %>
+    </div>
+
+    <div class="input-field">
+      <select name="user[activity]">
+        <option value="0" <% if current_user.activity == 0 %>selected<% end %>>
+          Sedentario
+        </option>
+        <option value="1" <% if current_user.activity == 1 %>selected<% end %>>
+          Levemente activo
+        </option>
+        <option value="2" <% if current_user.activity == 2 %>selected<% end %>>
+          Moderadamente activo
+        </option>
+        <option value="3" <% if current_user.activity == 3 %>selected<% end %>>
+          Muy activo
+        </option>
+        <option value="4" <% if current_user.activity == 4 %>selected<% end %>>
+          Hiperactivo
+        </option>
+      </select>
+      <label for="user[activity]">Actividad física</label>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Actualizar cuenta", class:'waves-effect waves-light btn light-green' %>
+    </div>
+    <% end %>
+
+    <br>
+
+    <h3>Eliminar cuenta</h3>
+    <div>
+      <p>Quieres dar de baja tu cuenta de <b>macromeal</b>? :(</p>
+      <%= button_to "Eliminar cuenta",
+      registration_path(resource_name), data: { confirm: "Estás seguro/a?" },
+      method: :delete,
+      class: 'waves-effect waves-light btn red' %>
+    </div>
+
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cp %><br />
-    <%= f.text_field :cp, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.text_field :sex, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :height %><br />
-    <%= f.text_field :height, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :weight %><br />
-    <%= f.text_field :weight, autocomplete: "on" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :activity %><br />
-    <%= f.text_field :activity, autocomplete: "on" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

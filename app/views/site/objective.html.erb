@@ -1,7 +1,7 @@
 <h1>Objetivo</h1>
 <%= link_to 'Edit Profile', edit_users_path %>
 
-<h2>Características físicas</h2>
+<h3>Características físicas</h3>
 <ul class="collection">
   <li class="collection-item">Sexo: <%= current_user.sex %></li>
   <li class="collection-item">Edad: <%= current_user.age %></li>
@@ -11,10 +11,10 @@
 </ul>
 
 
-<h2>Objetivo generado</h2>
-<ul>
-  <li>Calorías: <%= current_user.calories %></li>
-  <li>Proteínas: <%= current_user.protein %></li>
-  <li>Grasas: <%= current_user.fat %></li>
-  <li>Carbohidratos: <%= current_user.carbs %></li>
+<h3>Objetivo generado</h3>
+<ul class="collection">
+  <li class="collection-item">Calorías: <%= current_user.calories %></li>
+  <li class="collection-item">Proteínas: <%= current_user.protein %></li>
+  <li class="collection-item">Grasas: <%= current_user.fat %></li>
+  <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
 </ul>

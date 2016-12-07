@@ -14,11 +14,29 @@
 
 <h2>Características físicas</h2>
 <ul>
-  <li>Sexo: <%= current_user.sex %></li>
+  <li>Sexo:
+    <% if current_user.sex == 0 %>
+      Masculino
+    <% else %>
+      Femenino
+    <% end %>
+  </li>
   <li>Edad: <%= current_user.age %></li>
-  <li>Altura: <%= current_user.height %></li>
-  <li>Peso: <%= current_user.weight %></li>
-  <li>Actividad: <%= current_user.activity %></li>
+  <li>Altura: <%= current_user.height %> cm</li>
+  <li>Peso: <%= current_user.weight %> kg</li>
+  <li>Actividad:
+    <% if current_user.activity == 0 %>
+      Sedentario
+    <% elsif current_user.activity == 1 %>
+      Levemente activo
+    <% elsif current_user.activity == 2 %>
+      Moderadamente activo
+    <% elsif current_user.activity == 3 %>
+      Muy activo
+    <% else %>
+      Hiperactivo
+    <% end %>
+  </li>
 </ul>
 
 <h2>Objetivo generado</h2>
