@@ -1,0 +1,11 @@
+<li><%= link_to 'Productos', products_path %></li>
+<% if user_signed_in? %>
+  <li><%= link_to 'Objetivo', '/objective' %></li>
+  <li><%= link_to 'Pedido', new_order_path %></li>
+  <li><%= link_to 'Tus pedidos', '/orders' %></li>
+  <li><%= link_to 'Perfil', '/users' %></li>
+  <li><%= link_to('Cerrar sesión', destroy_user_session_path, :method => :delete) %></li>
+<% else %>
+  <li><%= link_to 'Acceso', new_user_session_path %></li>
+  <li><%= link_to 'Registro', new_user_registration_path %></li>
+<% end %>

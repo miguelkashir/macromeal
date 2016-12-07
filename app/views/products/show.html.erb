@@ -1,13 +1,18 @@
-<h1>Producto</h1>
+<div class="row">
+  <div class="col s12">
+    <h1>Producto</h1>
 
-<ul>
-  <li><strong>Nombre:</strong> <%= @product.name %></li>
-  <li><strong>Descripción:</strong> <%= @product.description %></li>
-  <li><strong>Categoría:</strong> <%= @product.category %></li>
-  <li><strong>Imagen:</strong> <img src="<%= @product.img %>" alt="<%= @product.name %>"></li>
-  <li><strong>Calorías:</strong> <%= @product.calories %></li>
-  <li><strong>Proteínas:</strong> <%= @product.protein %></li>
-  <li><strong>Grasas:</strong> <%= @product.fat %></li>
-  <li><strong>Carbohidratos:</strong> <%= @product.carbs %></li>
-  <li><strong>Precio:</strong> <%= @product.price %></li>
-</ul>
+    <ul class="collection">
+      <li class="collection-item"><strong>ID:</strong> <%= @product.id %></li>
+      <li class="collection-item"><strong>Nombre:</strong> <%= @product.name %></li>
+      <li class="collection-item"><strong>Descripción:</strong> <%= @product.description %></li>
+      <li class="collection-item"><strong>Categoría:</strong> <%= @product.category %></li>
+      <li class="collection-item"><strong>Imagen:</strong> <img src="<%= @product.img %>" alt="<%= @product.name %>"></li>
+      <li class="collection-item"><strong>Calorías:</strong> <%= @product.calories %></li>
+      <li class="collection-item"><strong>Proteínas:</strong> <%= @product.protein %></li>
+      <li class="collection-item"><strong>Grasas:</strong> <%= @product.fat %></li>
+      <li class="collection-item"><strong>Carbohidratos:</strong> <%= @product.carbs %></li>
+      <li class="collection-item"><strong>Precio:</strong> <%= @product.price %></li>
+    </ul>
+  </div>
+</div>

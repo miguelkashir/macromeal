@@ -1,20 +1,24 @@
-<h1>Objetivo</h1>
-<%= link_to 'Edit Profile', edit_users_path %>
+<div class="row">
+  <div class="col s12">
+    <h1>Objetivo</h1>
+    <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
 
-<h3>Características físicas</h3>
-<ul class="collection">
-  <li class="collection-item">Sexo: <%= current_user.sex %></li>
-  <li class="collection-item">Edad: <%= current_user.age %></li>
-  <li class="collection-item">Altura: <%= current_user.height %></li>
-  <li class="collection-item">Peso: <%= current_user.weight %></li>
-  <li class="collection-item">Actividad: <%= current_user.activity %></li>
-</ul>
+    <h3>Características físicas</h3>
+    <ul class="collection">
+      <li class="collection-item">Sexo: <%= current_user.sex %></li>
+      <li class="collection-item">Edad: <%= current_user.age %></li>
+      <li class="collection-item">Altura: <%= current_user.height %></li>
+      <li class="collection-item">Peso: <%= current_user.weight %></li>
+      <li class="collection-item">Actividad: <%= current_user.activity %></li>
+    </ul>
 
 
-<h3>Objetivo generado</h3>
-<ul class="collection">
-  <li class="collection-item">Calorías: <%= current_user.calories %></li>
-  <li class="collection-item">Proteínas: <%= current_user.protein %></li>
-  <li class="collection-item">Grasas: <%= current_user.fat %></li>
-  <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
-</ul>
+    <h3>Objetivo generado</h3>
+    <ul class="collection">
+      <li class="collection-item">Calorías: <%= current_user.calories %></li>
+      <li class="collection-item">Proteínas: <%= current_user.protein %></li>
+      <li class="collection-item">Grasas: <%= current_user.fat %></li>
+      <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
+    </ul>
+  </div>
+</div>

@@ -1,13 +1,14 @@
-<h1>Tus pedidos</h1>
-
-<% if @orders.length > 0 %>
-  <ul>
-    <% @orders.each do |order| %>
-      <li>
-        <%= link_to "Pedido #{order.id} / Fecha: #{order.created_at} / Total: €", "/orders/#{order.id}" %>
-      </li>
+<div class="row">
+  <div class="col s12">
+    <h1>Tus pedidos</h1>
+    <% if @orders.length > 0 %>
+      <ul class="collection">
+        <% @orders.each do |order| %>
+          <%= link_to "Pedido #{order.id} / Fecha: #{order.created_at} / Total: €", "/orders/#{order.id}", class: 'collection-item' %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Aún no has hecho ningún pedido!</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>Aún no has hecho ningún pedido!</p>
-<% end %>
+  </div>
+</div>

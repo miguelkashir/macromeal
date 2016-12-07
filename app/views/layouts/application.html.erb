@@ -8,53 +8,36 @@
   <%= javascript_include_tag 'application' %>
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <!-- NAVBAR -->
     <div class="row">
-      <nav class="col s12 light-green">
+      <nav class="col s12 green">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo"> macromeal</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-          <ul class="right hide-on-med-and-down">
-            <li><%= link_to 'Productos', products_path %></li>
-            <% if user_signed_in? %>
-              <li><%= link_to 'Objetivo', '/objective' %></li>
-              <li><%= link_to 'Pedido', new_order_path %></li>
-              <li><%= link_to 'Tus pedidos', '/orders' %></li>
-              <li><%= link_to 'Perfil', '/users' %></li>
-              <li><%= link_to('Cerrar sesión', destroy_user_session_path, :method => :delete) %></li>
-            <% else %>
-              <li><%= link_to 'Acceso', new_user_session_path %></li>
-              <li><%= link_to 'Registro', new_user_registration_path %></li>
-            <% end %>
-          </ul>
-
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Edit this</a></li>
-          </ul>
+          <a href="/" class="brand-logo">
+            <i class="material-icons">shopping_basket</i>
+            macromeal
+          </a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down"><%= render 'layouts/links' %></ul>
+          <ul class="side-nav" id="mobile-demo"><%= render 'layouts/links' %></ul>
         </div>
       </nav>
     </div>
     <!-- NAVBAR -->
 
     <!-- ALERTS -->
-    <div class="row">
-      <div class="msg col s12">
-        <% if notice %>
-        <div class="alert alert-dismissible alert-success">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <%= notice %>
-        </div>
-        <% end %>
-        <% if alert %>
-        <div class="alert alert-dismissible alert-danger">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <%= alert %>
-        </div>
-        <% end %>
-      </div>
-    </div>
+    <% if notice %>
+      <script type="text/javascript">
+        msg('<%= notice %>');
+      </script>
+    <% end %>
+    <% if alert %>
+      <script type="text/javascript">
+        msg('<%= alert %>');
+      </script>
+    <% end %>
     <!-- ALERTS -->
 
     <!-- BODY -->

@@ -1,48 +1,52 @@
-<h1>Profile</h1>
-<%= link_to 'Edit Profile', edit_users_path %>
+<div class="row">
+  <div class="col s12">
+    <h1>Perfil</h1>
+    <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
 
-<h2>Datos personales</h2>
-<ul>
-  <li>Email: <%= current_user.email %></li>
-  <li>Nombre: <%= current_user.name %></li>
-  <li>Dirección: <%= current_user.address %></li>
-  <li>CP: <%= current_user.cp %></li>
-  <li>Ciudad: <%= current_user.city %></li>
-  <li>País: <%= current_user.country %></li>
-  <li>Teléfono: <%= current_user.phone %></li>
-</ul>
+    <h2>Datos personales</h2>
+    <ul class="collection">
+      <li class="collection-item">Email: <%= current_user.email %></li>
+      <li class="collection-item">Nombre: <%= current_user.name %></li>
+      <li class="collection-item">Dirección: <%= current_user.address %></li>
+      <li class="collection-item">CP: <%= current_user.cp %></li>
+      <li class="collection-item">Ciudad: <%= current_user.city %></li>
+      <li class="collection-item">País: <%= current_user.country %></li>
+      <li class="collection-item">Teléfono: <%= current_user.phone %></li>
+    </ul>
 
-<h2>Características físicas</h2>
-<ul>
-  <li>Sexo:
-    <% if current_user.sex == 0 %>
-      Masculino
-    <% else %>
-      Femenino
-    <% end %>
-  </li>
-  <li>Edad: <%= current_user.age %></li>
-  <li>Altura: <%= current_user.height %> cm</li>
-  <li>Peso: <%= current_user.weight %> kg</li>
-  <li>Actividad:
-    <% if current_user.activity == 0 %>
-      Sedentario
-    <% elsif current_user.activity == 1 %>
-      Levemente activo
-    <% elsif current_user.activity == 2 %>
-      Moderadamente activo
-    <% elsif current_user.activity == 3 %>
-      Muy activo
-    <% else %>
-      Hiperactivo
-    <% end %>
-  </li>
-</ul>
+    <h2>Características físicas</h2>
+    <ul class="collection">
+      <li class="collection-item">Sexo:
+        <% if current_user.sex == 0 %>
+          Masculino
+        <% else %>
+          Femenino
+        <% end %>
+      </li>
+      <li class="collection-item">Edad: <%= current_user.age %></li>
+      <li class="collection-item">Altura: <%= current_user.height %> cm</li>
+      <li class="collection-item">Peso: <%= current_user.weight %> kg</li>
+      <li class="collection-item">Actividad:
+        <% if current_user.activity == 0 %>
+          Sedentario
+        <% elsif current_user.activity == 1 %>
+          Levemente activo
+        <% elsif current_user.activity == 2 %>
+          Moderadamente activo
+        <% elsif current_user.activity == 3 %>
+          Muy activo
+        <% else %>
+          Hiperactivo
+        <% end %>
+      </li>
+    </ul>
 
-<h2>Objetivo generado</h2>
-<ul>
-  <li>Calorías: <%= current_user.calories %></li>
-  <li>Proteínas: <%= current_user.protein %></li>
-  <li>Grasas: <%= current_user.fat %></li>
-  <li>Carbohidratos: <%= current_user.carbs %></li>
-</ul>
+    <h2>Objetivo generado</h2>
+    <ul class="collection">
+      <li class="collection-item">Calorías: <%= current_user.calories %></li>
+      <li class="collection-item">Proteínas: <%= current_user.protein %></li>
+      <li class="collection-item">Grasas: <%= current_user.fat %></li>
+      <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
+    </ul>
+  </div>
+</div>

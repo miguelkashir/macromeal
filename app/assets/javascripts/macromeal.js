@@ -1,10 +1,9 @@
 $(document).ready(function() {
-  $(".button-collapse").sideNav(); //materialize
-  $('select').material_select(); //materialize
+  $(".button-collapse").sideNav();
+  $('select').material_select();
+  $('.parallax').parallax();
 });
 
-// $(document).change(function() {
-//   alert('change load!');
-//   $(".button-collapse").sideNav(); //materialize
-//   $('select').material_select(); //materialize
-// });
+function msg(text) {
+  Materialize.toast(text, 2000)
+}
