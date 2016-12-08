@@ -45,13 +45,6 @@
         <li class="collection-item">Grasas: <%= u.fat %></li>
         <li class="collection-item">Carbohidratos: <%= u.carbs %></li>
       </ul>
-
-      <% if u.sex != nil && u.age != nil && u.height != nil && u.weight != nil && u.activity != nil %>
-        <%= link_to 'Mantenimiento de peso', users_generate_objective_path, method: :patch, class: 'waves-effect waves-light btn light-green' %>
-      <% else %>
-        <p>Necesitas rellenar todos tus <b>datos físicos</b> para generar tu objetivo!</p>
-      <% end %>
-
     <% else %>
       <p>Necesitas iniciar sesión para generar tu objetivo.</p>
       <p><%= link_to 'Iniciar sesión', new_user_session_path, class:'waves-effect waves-light btn light-green' %></p>
@@ -61,11 +54,29 @@
     <% if user_signed_in? %>
       <h3>Tus datos físicos</h3>
       <ul class="collection">
-        <li class="collection-item">Sexo: <%= u.sex %></li>
+        <li class="collection-item">Sexo:
+          <% if u.sex == 0 %>
+            Masculino
+          <% else %>
+            Femenino
+          <% end %>
+        </li>
         <li class="collection-item">Edad: <%= u.age %></li>
         <li class="collection-item">Altura: <%= u.height %></li>
         <li class="collection-item">Peso: <%= u.weight %></li>
-        <li class="collection-item">Actividad: <%= u.activity %></li>
+        <li class="collection-item">Actividad:
+          <% if u.activity == 0 %>
+            Sedentario
+          <% elsif u.activity == 1 %>
+            Levemente activo
+          <% elsif u.activity == 2 %>
+            Moderadamente activo
+          <% elsif u.activity == 3 %>
+            Muy activo
+          <% else %>
+            Hiperactivo
+          <% end %>
+        </li>
       </ul>
       <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
     <% else %>
@@ -74,3 +85,47 @@
     <% end %>
   </div>
 </div>
+<% if user_signed_in? %>
+<div class="row center">
+  <h3>Elige un objetivo</h3>
+    <% if u.sex != nil && u.age != nil && u.height != nil && u.weight != nil && u.activity != nil %>
+      <div class="col m4 s12 center">
+        <h4>Definición</h4>
+        <form action="<%= users_generate_objective_path %>" method="post">
+          <input type="number" name="objective" value="0" hidden>
+          <input type="number" name="protein" value="35" hidden>
+          <input type="number" name="fat" value="25" hidden>
+          <input type="number" name="carbs" value="40" hidden>
+          <button class="waves-effect waves-light btn lime" type="submit">DEFINICION</button>
+        </form>
+        <p><b>Proteínas 35% / Grasas 25% / Carbohidratos 40%</b></p>
+      </div>
+    <div class="col m4 s12">
+      <h4>Mantenimiento</h4>
+      <form action="<%= users_generate_objective_path %>" method="post">
+        <input type="number" name="objective" value="1" hidden>
+        <input type="number" name="protein" value="30" hidden>
+        <input type="number" name="fat" value="25" hidden>
+        <input type="number" name="carbs" value="45" hidden>
+        <button class="waves-effect waves-light btn light-green" type="submit">MANTENIMIENTO</button>
+      </form>
+      <p><b>Proteínas 30% / Grasas 25% / Carbohidratos 45%</b></p>
+    </div>
+    <div class="col m4 s12">
+      <h4>Volumen</h4>
+      <form action="<%= users_generate_objective_path %>" method="post">
+        <input type="number" name="objective" value="2" hidden>
+        <input type="number" name="protein" value="25" hidden>
+        <input type="number" name="fat" value="20" hidden>
+        <input type="number" name="carbs" value="55" hidden>
+        <button class="waves-effect waves-light btn green" type="submit">VOLUMEN</button>
+      </form>
+      <p><b>Proteínas 25% / Grasas 20% / Carbohidratos 55%</b></p>
+    </div>
+    <% else %>
+      <div class="col s12 center">
+        <p>Necesitas rellenar todos tus <b>datos físicos</b> para generar tu objetivo!</p>
+      </div>
+      <% end %>
+</div>
+<% end %>

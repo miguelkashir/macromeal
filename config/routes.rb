@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get '/objective', to: 'site#objective'
 
   # users/devise
+  post '/users/generate_objective', to: 'users#generate_objective'
   devise_for :users
   resource :users
-  patch '/users/generate_objective', to: 'users#generate_objective'
 
   # products
   resources :products
