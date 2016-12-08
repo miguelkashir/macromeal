@@ -4,7 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts"
-Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts/roboto"
+Rails.application.config.assets.paths << "#{Rails.root}/app/assets/images/food"
 
 
 # Add additional assets to the asset load path

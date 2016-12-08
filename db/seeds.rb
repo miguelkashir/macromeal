@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#products : meat
+Product.create(name: 'Pechuga de pollo', category: 'carne', img: 'pechuga_pollo.jpg', calories: 23, protein: 0, fat: 1, carbs: 0, price: 0.60)
+Product.create(name: 'Muslo de pollo', category: 'carne', img: 'muslo_pollo.jpg', calories: 109, protein: 21, fat: 2, carbs: 0, price: 0.65)
+Product.create(name: 'Filete de cerdo', category: 'carne', img: 'filete_cerdo.jpg', calories: 190, protein: 19, fat: 12, carbs: 0, price: 0.45)
+Product.create(name: 'Chuleta de cerdo', category: 'carne', img: 'chuleta_cerdo.jpg', calories: 198, protein: 19, fat: 13, carbs: 0, price: 0.55)
+Product.create(name: 'Solomillo de cerdo', category: 'carne', img: 'solomillo_cerdo.jpg', calories: 112, protein: 21, fat: 2, carbs: 0, price: 0.70)
+Product.create(name: 'Filete de ternera', category: 'carne', img: 'filete_ternera.jpg', calories: 98, protein: 21, fat: 3, carbs: 0, price: 1.10)
+Product.create(name: 'Chuleta de ternera', category: 'carne', img: 'chuleta_ternera.jpg', calories: 118, protein: 21, fat: 3, carbs: 0, price: 1.20)
+Product.create(name: 'Paletilla de cordero', category: 'carne', img: 'paletilla_cordero.jpg', calories: 314, protein: 16, fat: 28, carbs: 0, price: 1.50)
+Product.create(name: 'Costilla de cordero', category: 'carne', img: 'costilla_cordero.jpg', calories: 385, protein: 12, fat: 37, carbs: 0, price: 1.30)
+Product.create(name: 'Chuleta de cordero', category: 'carne', img: 'chuleta_cordero.jpg', calories: 199, protein: 19, fat: 13, carbs: 0, price: 1.20)
