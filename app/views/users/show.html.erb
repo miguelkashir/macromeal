@@ -1,9 +1,13 @@
 <div class="row">
   <div class="col s12">
-    <h1>Perfil</h1>
+    <h2>Perfil</h2>
     <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
+  </div>
+</div>
 
-    <h2>Datos personales</h2>
+<div class="row">
+  <div class="col m6 s12 center">
+    <h3>Información personal</h3>
     <ul class="collection">
       <li class="collection-item">Email: <%= current_user.email %></li>
       <li class="collection-item">Nombre: <%= current_user.name %></li>
@@ -13,8 +17,9 @@
       <li class="collection-item">País: <%= current_user.country %></li>
       <li class="collection-item">Teléfono: <%= current_user.phone %></li>
     </ul>
-
-    <h2>Características físicas</h2>
+  </div>
+  <div class="col m6 s12 center">
+    <h3>Información física</h3>
     <ul class="collection">
       <li class="collection-item">Sexo:
         <% if current_user.sex == 0 %>
@@ -39,14 +44,6 @@
           Hiperactivo
         <% end %>
       </li>
-    </ul>
-
-    <h2>Objetivo generado</h2>
-    <ul class="collection">
-      <li class="collection-item">Calorías: <%= current_user.calories %></li>
-      <li class="collection-item">Proteínas: <%= current_user.protein %></li>
-      <li class="collection-item">Grasas: <%= current_user.fat %></li>
-      <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
     </ul>
   </div>
 </div>

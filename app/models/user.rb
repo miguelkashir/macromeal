@@ -10,7 +10,7 @@ class User < ApplicationRecord
   :validatable
 
   # Harris-Benedict formula: https://goo.gl/ZOhTFI
-  def calculate_tmb
+  def calculate_mb
     #calculate basal metabolism
     if sex == 0
       mb = 66.473 + (13.751 * weight) + (5.0033 * height) - (6.7550 * age)

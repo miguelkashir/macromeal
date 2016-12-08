@@ -1,24 +1,76 @@
+<% u = current_user %>
+
 <div class="row">
   <div class="col s12">
-    <h1>Objetivo</h1>
-    <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
-
-    <h3>Características físicas</h3>
-    <ul class="collection">
-      <li class="collection-item">Sexo: <%= current_user.sex %></li>
-      <li class="collection-item">Edad: <%= current_user.age %></li>
-      <li class="collection-item">Altura: <%= current_user.height %></li>
-      <li class="collection-item">Peso: <%= current_user.weight %></li>
-      <li class="collection-item">Actividad: <%= current_user.activity %></li>
+    <h2>Objetivo</h1>
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header light-green">
+          <i class="material-icons">info</i>
+          En qué consiste?
+        </div>
+        <div class="collapsible-body">
+          <p><b>macromeal</b> te ayuda a cumplir con tu objetivo físico personal! (<em>ganar músculo, perder grasa, etc</em>)</p>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header light-green">
+          <i class="material-icons">search</i>
+          Cómo funciona?
+        </div>
+        <div class="collapsible-body">
+          <p>Solo tienes que introducir tus propiedades físicas en tu perfil (<em>sexo, edad, altura, peso y actividad física)</em> y generar el objetivo deseado simplemente pulsando un botón.</p>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header light-green">
+          <i class="material-icons">done</i>
+          Qué validez tiene?
+        </div>
+        <div class="collapsible-body">
+          <p><b>macromeal</b> aplica la famosa <%= link_to 'ecuación de Harris Benedict', 'https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation' %> para calcular tu metabolismo basal (<em>la cantidad de calorías que el cuerpo consume diariamente</em>) y calcula la modificación necesaria sobre ella para la realización del objetivo.</p>
+        </div>
+      </li>
     </ul>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col m6 s12 center">
+    <% if user_signed_in? %>
+      <h3>Tu objetivo diario</h3>
+      <ul class="collection">
+        <li class="collection-item">Calorías: <%= u.calories %></li>
+        <li class="collection-item">Proteínas: <%= u.protein %></li>
+        <li class="collection-item">Grasas: <%= u.fat %></li>
+        <li class="collection-item">Carbohidratos: <%= u.carbs %></li>
+      </ul>
 
-    <h3>Objetivo generado</h3>
-    <ul class="collection">
-      <li class="collection-item">Calorías: <%= current_user.calories %></li>
-      <li class="collection-item">Proteínas: <%= current_user.protein %></li>
-      <li class="collection-item">Grasas: <%= current_user.fat %></li>
-      <li class="collection-item">Carbohidratos: <%= current_user.carbs %></li>
-    </ul>
+      <% if u.sex != nil && u.age != nil && u.height != nil && u.weight != nil && u.activity != nil %>
+        <%= link_to 'Mantenimiento de peso', users_generate_objective_path, method: :patch, class: 'waves-effect waves-light btn light-green' %>
+      <% else %>
+        <p>Necesitas rellenar todos tus <b>datos físicos</b> para generar tu objetivo!</p>
+      <% end %>
+
+    <% else %>
+      <p>Necesitas iniciar sesión para generar tu objetivo.</p>
+      <p><%= link_to 'Iniciar sesión', new_user_session_path, class:'waves-effect waves-light btn light-green' %></p>
+    <% end %>
+  </div>
+  <div class="col m6 s12 center">
+    <% if user_signed_in? %>
+      <h3>Tus datos físicos</h3>
+      <ul class="collection">
+        <li class="collection-item">Sexo: <%= u.sex %></li>
+        <li class="collection-item">Edad: <%= u.age %></li>
+        <li class="collection-item">Altura: <%= u.height %></li>
+        <li class="collection-item">Peso: <%= u.weight %></li>
+        <li class="collection-item">Actividad: <%= u.activity %></li>
+      </ul>
+      <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
+    <% else %>
+      <p>No tienes cuenta?</p>
+      <p><%= link_to 'Registro', new_user_registration_path, class:'waves-effect waves-light btn light-green' %></p>
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <li class="active" id=".js-nav-home"><%= link_to 'Inicio', root_path %></li>
 <li><%= link_to 'Productos', products_path %></li>
+<li><%= link_to 'Objetivo', '/objective' %></li>
 <% if user_signed_in? %>
-  <li><%= link_to 'Objetivo', '/objective' %></li>
   <li><%= link_to 'Pedido', new_order_path %></li>
   <li><%= link_to 'Tus pedidos', '/orders' %></li>
   <li><%= link_to 'Perfil', '/users' %></li>

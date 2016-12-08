@@ -4,6 +4,8 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts"
+Rails.application.config.assets.paths << "#{Rails.root}/app/assets/fonts/roboto"
+
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
