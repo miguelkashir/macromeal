@@ -1,8 +1,8 @@
-$(document).on('ready', initialize);
-$(document).on('turbolinks:load', initialize);
+$(document).ready(initialize);
+// $(document).on('turbolinks:render', initialize);
 
 function initialize() {
-  $(".button-collapse").sideNav();
+  $('.button-collapse').sideNav();
   $('select').material_select();
   $('.parallax').parallax();
   $('.collapsible').collapsible();

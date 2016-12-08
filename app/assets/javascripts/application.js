@@ -3,5 +3,5 @@
 //= require jquery-3.1.1.min.js
 //= require materialize.min.js
 //= require macromeal.js
-//= require turbolinks
+// require turbolinks
 //= require_tree .
