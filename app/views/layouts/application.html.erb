@@ -3,47 +3,53 @@
 <head>
   <title>Macromeal</title>
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
 </head>
 <body>
+
+  <!-- NAVBAR -->
+  <div class="navbar-fixed">
+    <nav class="green">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">
+          <i class="material-icons">shopping_basket</i>
+          macromeal
+        </a>
+        <a id="nav-mobile" href="#" data-activates="mobile-demo" class="button-collapse">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <%= render 'layouts/links' %>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <%= render 'layouts/links' %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- NAVBAR -->
+
+  <!-- ALERTS -->
+  <% if notice %>
+    <script type="text/javascript">
+      msg('<%= notice %>');
+    </script>
+  <% end %>
+  <% if alert %>
+    <script type="text/javascript">
+      msg('<%= alert %>');
+    </script>
+  <% end %>
+  <!-- ALERTS -->
+
+  <!-- BODY -->
   <div class="container-fluid">
-    <!-- NAVBAR -->
-    <div class="row">
-      <nav class="col s12 green">
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo">
-            <i class="material-icons">shopping_basket</i>
-            macromeal
-          </a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse">
-            <i class="material-icons">menu</i>
-          </a>
-          <ul class="right hide-on-med-and-down"><%= render 'layouts/links' %></ul>
-          <ul class="side-nav" id="mobile-demo"><%= render 'layouts/links' %></ul>
-        </div>
-      </nav>
-    </div>
-    <!-- NAVBAR -->
-
-    <!-- ALERTS -->
-    <% if notice %>
-      <script type="text/javascript">
-        msg('<%= notice %>');
-      </script>
-    <% end %>
-    <% if alert %>
-      <script type="text/javascript">
-        msg('<%= alert %>');
-      </script>
-    <% end %>
-    <!-- ALERTS -->
-
-    <!-- BODY -->
     <%= yield %>
-    <!-- BODY -->
+  </div>
+  <!-- BODY -->
 
-    </div>
-  </body>
+</body>
 </html>
