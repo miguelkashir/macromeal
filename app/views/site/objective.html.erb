@@ -1,31 +1,28 @@
+<%= javascript_include_tag "/assets/mm_objective" %>
 <% u = current_user %>
-
 <div class="row">
   <div class="col s12">
     <h2>Objetivo</h1>
     <ul class="collapsible popout" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header light-green">
-          <i class="material-icons">info</i>
-          En qué consiste?
+        <div class="collapsible-header light-green white-text">
+          <i class="material-icons">info</i>En qué consiste?
         </div>
         <div class="collapsible-body">
           <p><b>macromeal</b> te ayuda a cumplir con tu objetivo físico personal! (<em>ganar músculo, perder grasa, etc</em>)</p>
         </div>
       </li>
       <li>
-        <div class="collapsible-header light-green">
-          <i class="material-icons">search</i>
-          Cómo funciona?
+        <div class="collapsible-header light-green white-text">
+          <i class="material-icons">search</i>Cómo funciona?
         </div>
         <div class="collapsible-body">
           <p>Solo tienes que introducir tus propiedades físicas en tu perfil (<em>sexo, edad, altura, peso y actividad física)</em> y generar el objetivo deseado simplemente pulsando un botón.</p>
         </div>
       </li>
       <li>
-        <div class="collapsible-header light-green">
-          <i class="material-icons">done</i>
-          Qué validez tiene?
+        <div class="collapsible-header light-green white-text">
+          <i class="material-icons">done</i>Qué validez tiene?
         </div>
         <div class="collapsible-body">
           <p><b>macromeal</b> aplica la famosa <%= link_to 'ecuación de Harris Benedict', 'https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation' %> para calcular tu metabolismo basal (<em>la cantidad de calorías que el cuerpo consume diariamente</em>) y calcula la modificación necesaria sobre ella para la realización del objetivo.</p>
@@ -47,7 +44,7 @@
       </ul>
     <% else %>
       <p>Necesitas iniciar sesión para generar tu objetivo.</p>
-      <p><%= link_to 'Iniciar sesión', new_user_session_path, class:'waves-effect waves-light btn light-green' %></p>
+      <p><%= link_to 'Iniciar sesión', new_user_session_path, class:'waves-effect waves-light btn' %></p>
     <% end %>
   </div>
   <div class="col m6 s12 center">
@@ -78,10 +75,10 @@
           <% end %>
         </li>
       </ul>
-      <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn light-green' %>
+      <%= link_to 'Modificar perfil', edit_users_path, class: 'waves-effect waves-light btn' %>
     <% else %>
       <p>No tienes cuenta?</p>
-      <p><%= link_to 'Registro', new_user_registration_path, class:'waves-effect waves-light btn light-green' %></p>
+      <p><%= link_to 'Registro', new_user_registration_path, class:'waves-effect waves-light btn' %></p>
     <% end %>
   </div>
 </div>
@@ -96,7 +93,7 @@
           <input type="number" name="protein" value="35" hidden>
           <input type="number" name="fat" value="25" hidden>
           <input type="number" name="carbs" value="40" hidden>
-          <button class="waves-effect waves-light btn lime" type="submit">DEFINICION</button>
+          <button class="js-gen-obj waves-effect waves-light btn lime" type="submit">DEFINICION</button>
         </form>
         <p><b>Proteínas 35% / Grasas 25% / Carbohidratos 40%</b></p>
       </div>
@@ -107,7 +104,7 @@
         <input type="number" name="protein" value="30" hidden>
         <input type="number" name="fat" value="25" hidden>
         <input type="number" name="carbs" value="45" hidden>
-        <button class="waves-effect waves-light btn light-green" type="submit">MANTENIMIENTO</button>
+        <button class="js-gen-obj waves-effect waves-light btn" type="submit">MANTENIMIENTO</button>
       </form>
       <p><b>Proteínas 30% / Grasas 25% / Carbohidratos 45%</b></p>
     </div>
@@ -118,7 +115,7 @@
         <input type="number" name="protein" value="25" hidden>
         <input type="number" name="fat" value="20" hidden>
         <input type="number" name="carbs" value="55" hidden>
-        <button class="waves-effect waves-light btn green" type="submit">VOLUMEN</button>
+        <button class="js-gen-obj waves-effect waves-light btn green" type="submit">VOLUMEN</button>
       </form>
       <p><b>Proteínas 25% / Grasas 20% / Carbohidratos 55%</b></p>
     </div>

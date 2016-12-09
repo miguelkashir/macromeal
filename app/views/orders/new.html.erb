@@ -1,88 +1,64 @@
+<%= javascript_include_tag "/assets/mm_order" %>
 <div class="row">
   <div class="col s12">
-    <h1>Pedido</h1>
+    <h2>Pedido</h2>
+  </div>
+</div>
 
-    <!-- objective status -->
+<div class="row">
+  <div class="col s12">
     <h3>Estado del objetivo</h3>
-    <div class="progress_bars">
-      <strong>Calorías</strong>
-      <div class="progress grey">
-        <div class="determinate yellow" style="width: 20%"></div>
-      </div>
-
-      <strong>Proteínas</strong>
-      <div class="progress grey">
-        <div class="determinate light-green" style="width: 60%"></div>
-      </div>
-
-      <strong>Grasas</strong>
-      <div class="progress grey">
-        <div class="determinate light-green" style="width: 40%"></div>
-      </div>
-
-      <strong>Carbohidratos</strong>
-      <div class="progress grey">
-        <div class="determinate red" style="width: 95%"></div>
+    <strong>Calorías</strong>
+    <div class="pb js-pb-calories">
+      <div class="pb-bar">
+        <div class="pb-label">
+          0 / <%= current_user.calories %>
+        </div>
       </div>
     </div>
-    <!-- objective status -->
-    
+
+    <strong>Proteínas</strong>
+    <div class="pb js-pb-protein">
+      <div class="pb-bar">
+        <div class="pb-label">
+          0 / <%= current_user.protein %>
+        </div>
+      </div>
+    </div>
+
+    <strong>Grasas</strong>
+    <div class="pb js-pb-fat">
+      <div class="pb-bar">
+        <div class="pb-label">
+          0 / <%= current_user.fat %>
+        </div>
+      </div>
+    </div>
+
+    <strong>Carbohidratos</strong>
+    <div class="pb js-pb-carbs">
+      <div class="pb-bar">
+        <div class="pb-label">
+          0 / <%= current_user.carbs %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
     <div class="order">
-      <ul class="collection">
-        <li class="collection-item">
-          <h3>Comida #1</h3>
-          <table class="highlight centered responsive-table">
-            <thead>
-              <tr>
-                <th data-field="name">Producto</th>
-                <th data-field="calories">Calorías</th>
-                <th data-field="protein">Proteínas</th>
-                <th data-field="fat">Grasas</th>
-                <th data-field="carbs">Carbohidratos</th>
-                <th data-field="price">Cantidad</th>
-                <th data-field="edit">Modificar</th>
-                <th data-field="delete">Eliminar</th>
-                <th data-field="price">Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pechuga de pollo</td>
-                <td>60</td>
-                <td>20</td>
-                <td>3</td>
-                <td>0</td>
-                <td>100 gr</td>
-                <td>
-                  <a class="waves-effect waves-light btn light-green">
-                    <i class="material-icons">add</i>
-                  </a>
-                  <a class="waves-effect waves-light btn grey">
-                    <i class="material-icons">remove</i>
-                  </a>
-                </td>
-                <td>
-                  <a class="waves-effect waves-light btn red">
-                    <i class="material-icons">delete</i>
-                  </a>
-                </td>
-                <td>0,5 €</td>
-              </tr>
-            </tbody>
-          </table>
-          <a class="waves-effect waves-light btn lime">
-            <i class="material-icons left">add</i>
-            Añadir Producto
-          </a>
-        </li>
+      <ul class="collection js-collection">
+        <!-- js content -->
       </ul>
-      <a class="waves-effect waves-light btn light-green">
+      <a class="js-add-meal waves-effect waves-light btn">
         <i class="material-icons left">add</i>
         Nueva Comida
       </a>
     </div>
-    <a class="waves-effect waves-light btn green right">
-      <i class="material-icons left">add</i>
+    <a class="waves-effect waves-light btn grey disabled right">
+      <i class="material-icons left">shopping_basket</i>
       Comprar
     </a>
   </div>
