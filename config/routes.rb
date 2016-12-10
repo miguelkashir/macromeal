@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   resource :users
 
   # products
-  resources :products
+  resources :products, only: [:index, :show]
 
   #orders
-  resources :orders
+  resources :orders, only: [:index, :show, :new]
+
+  namespace :api do
+    resources :products
+  end
 end
