@@ -1,7 +1,7 @@
+var meals_counter = 1;
 $(document).ready(initialize);
 
 function initialize() {
-  var meals_counter = 1;
   var products_counter = 1;
   $('.js-nav-links li').removeClass('active');
   $('.js-nav-link-order').addClass('active');
@@ -10,12 +10,9 @@ function initialize() {
 }
 
 function addMeal() {
-  var meal = '<li class="collection-item">';
-  meal += '<h5>Comida #</h5>';
-  meal += '<a class="waves-effect waves-light btn red"><i class="material-icons">delete</i></a>';
+  var meal = '<li class="collection-item" id="meal'+ meals_counter +'">';
   meal += '<table class="js-meal highlight centered responsive-table">';
-  meal += '<thead>';
-  meal += '<tr>';
+  meal += '<thead><tr>';
   meal += '<th data-field="name">Producto</th>';
   meal += '<th data-field="calories">Calorías</th>';
   meal += '<th data-field="protein">Proteínas</th>';
@@ -25,19 +22,19 @@ function addMeal() {
   meal += '<th data-field="edit">Modificar</th>';
   meal += '<th data-field="delete">Eliminar</th>';
   meal += '<th data-field="price">Precio</th>';
-  meal += '</tr>';
-  meal += '</thead>';
-  meal += '<tbody></tbody>';
-  meal += '</table>';
-  meal += '<br>';
+  meal += '</tr></thead><tbody></tbody></table><br>';
   meal += '<a class="js-add-product waves-effect waves-light btn lime">';
-  meal += '<i class="material-icons left">add</i>';
-  meal += 'Añadir Producto</a>';
-  meal += '</li>';
+  meal += '<i class="material-icons left">add</i>Añadir Producto</a>';
+  meal += ' ' //buttons spacer
+  meal += '<a class="js-del-meal waves-effect waves-light btn red">';
+  meal += '<i class="material-icons">delete</i></a></li>';
 
   $('.js-collection').append(meal);
   $('.js-add-product').click(loadProducts);
+  $('.js-del-meal').click(deleteMeal);
 }
+
+
 
 function loadProducts() {
   $.ajax({
@@ -51,9 +48,9 @@ function showProducts(response) {
   $('#modal-products').modal('open');
   var products = '';
   for (var i = 0; i < response.length; i++) {
-    products += '<a class="collection-item">' + response[i].name + '</a>';
+    products += '<a class="collection-item">' + response[i].name + '<br>';
     products += '<a class="js-adding-product waves-effect waves-light btn" id="' + response[i].id + '">';
-    products += '<i class="material-icons">add</i>Añadir</a>';
+    products += '<i class="material-icons">add</i>Añadir</a></a>';
   }
   $('.js-products').append(products);
   $('.js-adding-product').click(addProduct);
@@ -91,7 +88,12 @@ function addProduct(event) {
       product += '</tr>';
 
       $('.js-meal tbody').append(product);
-      msg('Añadido: '+ response.name +'!', 1000);
+      msg('Añadido: '+ response.name, 1000);
     }
   });
+}
+
+function deleteMeal(event) {
+  var meal_id = event.currentTarget.parentElement.id;
+  $('#'+ meal_id +'').remove();
 }
