@@ -59,9 +59,20 @@ function showProducts(idMeal, response) {
   currentMeal = idMeal;
   var products = '';
   for (var i = 0; i < response.length; i++) {
-    products += '<a class="collection-item">' + response[i].name + '<br>';
+    products += '<div class="card horizontal hoverable">';
+    products += '<div class="card-image"><img src="/assets/food/'+ response[i].img +'"></div>';
+    products += '<div class="card-stacked">';
+    products += '<div class="card-content">';
+    products += '<h5>'+ response[i].name +'</h5>';
+    products += '<p><strong>Calorías</strong>: '+ response[i].calories +'</p><br>';
+    products += '<p><strong>Proteínas</strong>: '+ response[i].protein +'</p>';
+    products += '<p><strong>Grasas</strong>: '+ response[i].fat +'</p>';
+    products += '<p><strong>Carbohidratos</strong>: '+ response[i].carbs +'</p>';
+    products += '</div>';
+    products += '<div class="card-action">';
     products += '<a class="js-add-product waves-effect waves-light btn" id="' + response[i].id + '">';
-    products += '<i class="material-icons">add</i>Añadir</a></a>';
+    products += 'Añadir</a>';
+    products += '</div></div></div><div><br>';
   }
   $('.js-products').empty();
   $('.js-products').append(products);

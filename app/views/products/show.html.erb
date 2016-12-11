@@ -1,16 +1,21 @@
 <%= javascript_include_tag "/assets/mm_products" %>
 <div class="row">
-  <div class="col s12">
-    <h2>Producto</h2>
-    <ul class="collection">
-      <li class="collection-item"><img src="assets/<%= @product.img %>" alt="<%= @product.name %>"></li>
-      <li class="collection-item"><strong>Nombre:</strong> <%= @product.name %></li>
-      <li class="collection-item"><strong>Categoría:</strong> <%= @product.category.capitalize %></li>
-      <li class="collection-item"><strong>Calorías:</strong> <%= @product.calories %></li>
-      <li class="collection-item"><strong>Proteínas:</strong> <%= @product.protein %></li>
-      <li class="collection-item"><strong>Grasas:</strong> <%= @product.fat %></li>
-      <li class="collection-item"><strong>Carbohidratos:</strong> <%= @product.carbs %></li>
-      <li class="collection-item"><strong>Precio:</strong> <%= @product.price %></li>
-    </ul>
+  <div class="col s12 m7">
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag("food/#{@product.img}") %>
+        <span class="card-title"><%= @product.name %></span>
+      </div>
+      <div class="card-content">
+        <ul class="collection">
+          <li class="collection-item"><strong>Categoría:</strong> <%= @product.category.capitalize %></li>
+          <li class="collection-item"><strong>Calorías:</strong> <%= @product.calories %></li>
+          <li class="collection-item"><strong>Proteínas:</strong> <%= @product.protein %></li>
+          <li class="collection-item"><strong>Grasas:</strong> <%= @product.fat %></li>
+          <li class="collection-item"><strong>Carbohidratos:</strong> <%= @product.carbs %></li>
+          <li class="collection-item"><strong>Precio:</strong> <%= @product.price %> €</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
