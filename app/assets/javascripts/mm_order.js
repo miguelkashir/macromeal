@@ -1,6 +1,7 @@
 $(document).ready(initialize);
-var meals_counter = 0;
-var products_counter = 0;
+var mealsCounter = 0;
+var productsCounter = 0;
+var currentMeal;
 
 //init loads
 function initialize() {
@@ -12,7 +13,7 @@ function initialize() {
 
 // js-add-meal callback, adds a meal block
 function addMeal() {
-  var idMeal = meals_counter++; //unique id for meal
+  var idMeal = mealsCounter++; //unique id for meal
 
   var meal = '<li class="collection-item" id="meal'+ idMeal +'">';
   meal += '<table class="js-meal highlight centered"><thead><tr>';
@@ -36,22 +37,26 @@ function addMeal() {
   meal += '<i class="material-icons">delete</i></a></li>';
 
   $('.js-collection').append(meal);
-  $('.js-add-products').click(loadProducts);
+  $('.js-add-products').click(loadProducts.bind(event));
   $('.js-del-meal').click(deleteMeal);
 }
 
 //js-add-products callback, AJAX query loading products
-function loadProducts() {
+function loadProducts(event) {
+  idMeal = event.currentTarget.parentElement.id;
+
   $.ajax({
     type: 'GET',
     url: '/api/products',
-    success: showProducts
+    success: function(response) {
+      showProducts(idMeal, response);
+    }
   });
 }
 
-//success query of load products -> open modal and show products
-function showProducts(response) {
+function showProducts(idMeal, response) {
   $('#modal-products').modal('open');
+  currentMeal = idMeal;
   var products = '';
   for (var i = 0; i < response.length; i++) {
     products += '<a class="collection-item">' + response[i].name + '<br>';
@@ -71,8 +76,7 @@ function addProduct(event) {
     type: 'GET',
     url: '/api/products/' + idProduct,
     success: function(response) {
-
-      var idProduct = 'product'+ products_counter++; //unique id for product
+      var idProduct = 'product'+ productsCounter++; //unique id for product
 
       var product = '<tr id="'+ idProduct +'">';
       product += '<td>'+ response.name +'</td>';
@@ -101,7 +105,7 @@ function addProduct(event) {
       product += '</tr>';
 
       msg('Añadido: '+ response.name, 1000);
-      $('.js-meal tbody').append(product);
+      $('#'+ currentMeal +' table tbody').append(product);
       $('.js-del-product').click(deleteProduct);
     }
   });
@@ -114,6 +118,5 @@ function deleteMeal(event) {
 
 function deleteProduct(event) {
   var product_id = event.currentTarget.parentElement.parentElement.id;
-  console.log(product_id);
   $('#'+ product_id +'').remove();
 }
