@@ -1,4 +1,4 @@
-# Product.create(name: 'Pechuga de pollo', category: 'carne', img: 'pechuga_pollo.jpg', calories: 23, protein: 0, fat: 1, carbs: 0, price: 0.60)
+# Product.create(name: 'Pechuga de pollo', category: 'carne', img: 'pechuga_pollo.jpg', calories: 86, protein: 23, fat: 1, carbs: 0, price: 0.60)
 # Product.create(name: 'Muslo de pollo', category: 'carne', img: 'muslo_pollo.jpg', calories: 109, protein: 21, fat: 2, carbs: 0, price: 0.65)
 # Product.create(name: 'Filete de cerdo', category: 'carne', img: 'filete_cerdo.jpg', calories: 190, protein: 19, fat: 12, carbs: 0, price: 0.45)
 # Product.create(name: 'Chuleta de cerdo', category: 'carne', img: 'chuleta_cerdo.jpg', calories: 198, protein: 19, fat: 13, carbs: 0, price: 0.55)
