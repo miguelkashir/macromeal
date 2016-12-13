@@ -22,54 +22,48 @@ var totalCarbs = [];
 var totalPrice = [];
 
 function initialize() {
+
   setObjective();
   setActiveClassToCurrentNavLink();
   $('.modal').modal();
 
-
-  //add meal
   $('.js-order').on('click', '.js-addMeal', function(event) {
     addMeal();
   });
 
-  //remove meal
   $('.js-order').on('click', '.js-removeMeal', function(event) {
     removeMeal(event.currentTarget.parentElement.id);
   });
 
-  //get products
   $('.js-order').on('click', '.js-getProducts', function(event) {
     getProducts(event.currentTarget.parentElement.id);
   });
 
-  //add product
   $('.js-order').on('click', '.js-addProduct', function(event) {
     idProduct = event.currentTarget.id;
     getProduct(idProduct);
   });
 
-  //add product amount
   $('.js-order').on('click', '.js-addAmount', function(event) {
     idProduct = event.currentTarget.parentElement.parentElement.id;
     addAmount(idProduct);
   });
 
-  //substract product amount
   $('.js-order').on('click', '.js-substractAmount', function(event) {
     idProduct = event.currentTarget.parentElement.parentElement.id;
     substractAmount(idProduct);
   });
 
-  //remove product
   $('.js-order').on('click', '.js-removeProduct', function(event) {
     idProduct = event.currentTarget.parentElement.parentElement.id;
     removeProduct(idProduct);
   });
+
 }
+
 function setActiveClassToCurrentNavLink() {
   $('.js-nav-link-order').addClass('active');
 }
-
 
 function setObjective() {
   objCalories = parseInt(($('.js-pb-calories .pb-label').text()).split('/')[1]);
@@ -79,6 +73,7 @@ function setObjective() {
 }
 
 function updateStatus() {
+  //calories
   var pbCalories = 0;
   var pbCaloriesProgress = 0;
   for (var i = 0; i < totalCalories.length; i++) {
@@ -88,6 +83,7 @@ function updateStatus() {
   $('.js-pb-calories .pb-label').text(pbCalories +' / '+ objCalories);
   $('.js-pb-calories .pb-bar').css('width', pbCaloriesProgress +'%');
 
+  //protein
   var pbProtein = 0;
   var pbProteinProgress = 0;
   for (var i = 0; i < totalProtein.length; i++) {
@@ -97,6 +93,7 @@ function updateStatus() {
   $('.js-pb-protein .pb-label').text(pbProtein +' / '+ objProtein);
   $('.js-pb-protein .pb-bar').css('width', pbProteinProgress +'%');
 
+  //fat
   var pbFat = 0;
   var pbFatProgress = 0;
   for (var i = 0; i < totalFat.length; i++) {
@@ -106,6 +103,7 @@ function updateStatus() {
   $('.js-pb-fat .pb-label').text(pbFat +' / '+ objFat);
   $('.js-pb-fat .pb-bar').css('width', pbFatProgress +'%');
 
+  //carbs
   var pbCarbs = 0;
   var pbCarbsProgress = 0;
   for (var i = 0; i < totalCarbs.length; i++) {
@@ -114,6 +112,21 @@ function updateStatus() {
   pbCarbsProgress = pbCarbs / (objCarbs / 100);
   $('.js-pb-carbs .pb-label').text(pbCarbs +' / '+ objCarbs);
   $('.js-pb-carbs .pb-bar').css('width', pbCarbsProgress +'%');
+
+  //price
+  var orderPrice = 0;
+  for (var i = 0; i < totalPrice.length; i++) {
+    orderPrice += totalPrice[i]
+  }
+  $('.js-total').text('Total: '+ orderPrice.toFixed(2) +' €');
+
+  enableDisableBuyButton();
+
+  console.log(totalCalories);
+  console.log(totalProtein);
+  console.log(totalFat);
+  console.log(totalCarbs);
+  console.log(totalPrice);
 }
 
 function addMeal() {
@@ -182,7 +195,7 @@ function getProduct(idProduct) {
 
 function addProduct(response) {
   var idProduct = 'product-'+ productsCounter++; //unique id for product
-  var product = '<tr id="'+ idProduct +'">';
+  var product = '<tr class="td-product"id="'+ idProduct +'">';
   product += '<td>'+ response.name +'</td>';
   product += '<td class="amount">100 gr</td>';
   product += '<td><a class="js-addAmount waves-effect waves-light btn">';
@@ -191,14 +204,14 @@ function addProduct(response) {
   product += '<i class="material-icons">remove</i></a></td>';
   product += '<td><a class="js-removeProduct waves-effect waves-light btn red">';
   product += '<i class="material-icons">delete</i></a></td>';
-  product += '<td>'+ response.price +' €</td>';
+  product += '<td class="price">'+ response.price +' €</td>';
   product += '</tr>';
 
   //print product and message
   $('#'+ currentMeal +' table tbody').append(product);
   msg('Añadido: '+ response.name, 1000);
 
-  //status info
+  //add to total
   totalCalories.push(response.calories);
   totalProtein.push(response.protein);
   totalFat.push(response.fat);
@@ -224,6 +237,15 @@ function removeProduct(idProduct) {
   totalProtein.splice(idProduct, 1);
   totalFat.splice(idProduct, 1);
   totalCarbs.splice(idProduct, 1);
+  totalPrice.splice(idProduct, 1);
+
+  //remove product info
+  origProdCalories.splice(idProduct, 1);
+  origProdProtein.splice(idProduct, 1);
+  origProdFat.splice(idProduct, 1);
+  origProdCarbs.splice(idProduct, 1);
+  origProdPrice.splice(idProduct, 1);
+
   updateStatus();
 }
 
@@ -231,36 +253,62 @@ function addAmount(idProduct) {
   var currentAmount = parseInt(($('#'+ idProduct +' .amount').text()).split(' ')[0]);
   currentAmount += 100;
   $('#'+ idProduct +' .amount').text(currentAmount +' gr');
-  if(currentAmount > 100) {
-    $('#'+ idProduct +' .js-substractAmount').removeClass('disabled');
-    $('#'+ idProduct +' .js-substractAmount').removeClass('grey');
-    $('#'+ idProduct +' .js-substractAmount').addClass('red accent-1');
-  }
+
   //calculate total
-  idProduct = idProduct.split('-')[1];
-  totalCalories[idProduct] += origProdCalories[idProduct];
-  totalProtein[idProduct] += origProdProtein[idProduct];
-  totalFat[idProduct] += origProdFat[idProduct];
-  totalCarbs[idProduct] += origProdCarbs[idProduct];
-  totalPrice[idProduct] += origProdPrice[idProduct];
+  index = idProduct.split('-')[1];
+  totalCalories[index] += origProdCalories[index];
+  totalProtein[index] += origProdProtein[index];
+  totalFat[index] += origProdFat[index];
+  totalCarbs[index] += origProdCarbs[index];
+  totalPrice[index] += origProdPrice[index];
+
+  $('#'+ idProduct +' .price').text((totalPrice[index]).toFixed(2) +' €');
   updateStatus();
+  enableDisableSubstractButton(currentAmount, idProduct);
 }
 
 function substractAmount(idProduct) {
   var currentAmount = parseInt($('#'+ idProduct +' .amount').text().split(' ')[0]);
   currentAmount -= 100;
   $('#'+ idProduct +' .amount').text(currentAmount +' gr');
+
+  //calculate total
+  index = idProduct.split('-')[1];
+  totalCalories[index] -= origProdCalories[index];
+  totalProtein[index] -= origProdProtein[index];
+  totalFat[index] -= origProdFat[index];
+  totalCarbs[index] -= origProdCarbs[index];
+  totalPrice[index] -= origProdPrice[index];
+
+  $('#'+ idProduct +' .price').text((totalPrice[index]).toFixed(2) +' €');
+  updateStatus();
+  enableDisableSubstractButton(currentAmount, idProduct);
+}
+
+function enableDisableSubstractButton(currentAmount, idProduct) {
+  if(currentAmount > 100) {
+    $('#'+ idProduct +' .js-substractAmount').removeClass('disabled');
+    $('#'+ idProduct +' .js-substractAmount').removeClass('grey');
+    $('#'+ idProduct +' .js-substractAmount').addClass('red accent-1');
+  }
   if(currentAmount === 100) {
     $('#'+ idProduct +' .js-substractAmount').addClass('disabled');
     $('#'+ idProduct +' .js-substractAmount').addClass('grey');
   }
+}
 
-  //calculate total
-  idProduct = idProduct.split('-')[1];
-  totalCalories[idProduct] -= origProdCalories[idProduct];
-  totalProtein[idProduct] -= origProdProtein[idProduct];
-  totalFat[idProduct] -= origProdFat[idProduct];
-  totalCarbs[idProduct] -= origProdCarbs[idProduct];
-  totalPrice[idProduct] -= origProdPrice[idProduct];
-  updateStatus();
+function enableDisableBuyButton() {
+  var total = 0;
+  for (var i = 0; i < totalPrice.length; i++) {
+    total += totalPrice[i];
+  }
+
+  if (total === 0) {
+    $('.buy').addClass('disabled');
+    $('.buy').addClass('grey');
+  }
+  else {
+    $('.buy').removeClass('disabled');
+    $('.buy').removeClass('grey');
+  }
 }

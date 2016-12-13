@@ -16,3 +16,7 @@
   color: white;
   width: 100%;
 }
+
+.td-product td {
+  width: 20%;
+}
