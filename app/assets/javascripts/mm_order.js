@@ -1,6 +1,6 @@
 $(document).ready(initialize);
-var currentMeal;
 
+var currentMeal;
 var mealsCounter = 0;
 var productsCounter = 0;
 
@@ -9,6 +9,7 @@ var objProtein = 0;
 var objFat = 0;
 var objCarbs = 0;
 
+var origProdId = [];
 var origProdCalories = [];
 var origProdProtein = [];
 var origProdFat = [];
@@ -116,17 +117,11 @@ function updateStatus() {
   //price
   var orderPrice = 0;
   for (var i = 0; i < totalPrice.length; i++) {
-    orderPrice += totalPrice[i]
+    orderPrice += totalPrice[i];
   }
   $('.js-total').text('Total: '+ orderPrice.toFixed(2) +' €');
 
   enableDisableBuyButton();
-
-  console.log(totalCalories);
-  console.log(totalProtein);
-  console.log(totalFat);
-  console.log(totalCarbs);
-  console.log(totalPrice);
 }
 
 function addMeal() {
@@ -147,7 +142,14 @@ function addMeal() {
 }
 
 function removeMeal(idMeal) {
+  var count = $('#'+ idMeal +' tbody tr').length;
+  for (var i = 0; i < count; i++) {
+    var idProduct = $('#'+ idMeal +' tbody tr:first-child').attr('id');
+    removeProduct(idProduct);
+  }
   $('#'+ idMeal).remove();
+  updateStatus();
+  enableDisableBuyButton();
 }
 
 function getProducts(idMeal) {
@@ -219,6 +221,7 @@ function addProduct(response) {
   totalPrice.push(response.price);
 
   //save product info
+  origProdId.push(response.id);
   origProdCalories.push(response.calories);
   origProdProtein.push(response.protein);
   origProdFat.push(response.fat);
@@ -231,20 +234,20 @@ function addProduct(response) {
 function removeProduct(idProduct) {
   $('#'+ idProduct).remove();
 
-  //remove from total
-  idProduct = idProduct.split('-')[1];
-  totalCalories.splice(idProduct, 1);
-  totalProtein.splice(idProduct, 1);
-  totalFat.splice(idProduct, 1);
-  totalCarbs.splice(idProduct, 1);
-  totalPrice.splice(idProduct, 1);
+  //"remove" from total
+  index = idProduct.split('-')[1];
+  totalCalories[index] = 0;
+  totalProtein[index] = 0;
+  totalFat[index] = 0;
+  totalCarbs[index] = 0;
+  totalPrice[index] = 0;
 
   //remove product info
-  origProdCalories.splice(idProduct, 1);
-  origProdProtein.splice(idProduct, 1);
-  origProdFat.splice(idProduct, 1);
-  origProdCarbs.splice(idProduct, 1);
-  origProdPrice.splice(idProduct, 1);
+  origProdCalories[index] = 0;
+  origProdProtein[index] = 0;
+  origProdFat[index] = 0;
+  origProdCarbs[index] = 0;
+  origProdPrice[index] = 0;
 
   updateStatus();
 }
@@ -256,6 +259,7 @@ function addAmount(idProduct) {
 
   //calculate total
   index = idProduct.split('-')[1];
+  console.log(index);
   totalCalories[index] += origProdCalories[index];
   totalProtein[index] += origProdProtein[index];
   totalFat[index] += origProdFat[index];
@@ -274,6 +278,7 @@ function substractAmount(idProduct) {
 
   //calculate total
   index = idProduct.split('-')[1];
+  console.log(index);
   totalCalories[index] -= origProdCalories[index];
   totalProtein[index] -= origProdProtein[index];
   totalFat[index] -= origProdFat[index];
