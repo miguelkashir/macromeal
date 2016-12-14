@@ -3,70 +3,74 @@ $(document).ready(initialize);
 function initialize() {
   loadListeners();
   loadModal();
+  setObjective();
   setActiveClassToCurrentNavLink();
+  update();
 }
 
 var order = { meals: [] };
 var currentMeal;
 var mealsCounter = 0;
 var productsCounter = 0;
+var objCalories = 0;
+var objProtein = 0;
+var objFat = 0;
+var objCarbs = 0;
 
-var objCalories = getObjectiveCalories();
-var objProtein = getObjectiveProtein();
-var objFat = getObjectiveFat();
-var objCarbs = getObjectiveCarbs();
+function setObjective() {
+  objCalories = parseInt(($('.js-pb-calories .pb-label').text()).split('/')[1]);
+  objProtein = parseInt(($('.js-pb-protein .pb-label').text()).split('/')[1]);
+  objFat = parseInt(($('.js-pb-fat .pb-label').text()).split('/')[1]);
+  objCarbs = parseInt(($('.js-pb-carbs .pb-label').text()).split('/')[1]);
+}
 
-function updateStatus() {
-  console.log(order);
+function update() {
+  var totalCalories = 0;
+  var totalProtein = 0;
+  var totalFat = 0;
+  var totalCarbs = 0;
+  var totalPrice = 0;
 
-  //calories
-  // var pbCalories = 0;
-  // var pbCaloriesProgress = 0;
-  // for (var i = 0; i < totalCalories.length; i++) {
-  //   pbCalories += totalCalories[i];
-  // }
-  // pbCaloriesProgress = pbCalories / (objCalories / 100);
-  // $('.js-pb-calories .pb-label').text(pbCalories +' / '+ objCalories);
-  // $('.js-pb-calories .pb-bar').css('width', pbCaloriesProgress +'%');
+  //calculate totals
+  for (var i = 0; i < order.meals.length; i++) {
+    for (var j = 0; j < order.meals[i].products.length; j++) {
+      totalCalories += (order.meals[i].products[j].calories) * (order.meals[i].products[j].amount / 100);
+      totalProtein += (order.meals[i].products[j].protein) * (order.meals[i].products[j].amount / 100);
+      totalFat += (order.meals[i].products[j].fat) * (order.meals[i].products[j].amount / 100);
+      totalCarbs += (order.meals[i].products[j].carbs) * (order.meals[i].products[j].amount / 100);
+      totalPrice += order.meals[i].products[j].totalPrice;
+    }
+  }
 
-  //protein
-  // var pbProtein = 0;
-  // var pbProteinProgress = 0;
-  // for (var i = 0; i < totalProtein.length; i++) {
-  //   pbProtein += totalProtein[i];
-  // }
-  // pbProteinProgress = pbProtein / (objProtein / 100);
-  // $('.js-pb-protein .pb-label').text(pbProtein +' / '+ objProtein);
-  // $('.js-pb-protein .pb-bar').css('width', pbProteinProgress +'%');
+  //calories progress bar
+  var pbCaloriesProgress = 0;
+  pbCaloriesProgress = totalCalories / (objCalories / 100);
+  $('.js-pb-calories .pb-label').text(totalCalories +' / '+ objCalories);
+  $('.js-pb-calories .pb-bar').css('width', pbCaloriesProgress +'%');
 
-  //fat
-  // var pbFat = 0;
-  // var pbFatProgress = 0;
-  // for (var i = 0; i < totalFat.length; i++) {
-  //   pbFat += totalFat[i];
-  // }
-  // pbFatProgress = pbFat / (objFat / 100);
-  // $('.js-pb-fat .pb-label').text(pbFat +' / '+ objFat);
-  // $('.js-pb-fat .pb-bar').css('width', pbFatProgress +'%');
+  //protein progress bar
+  var pbProteinProgress = 0;
+  pbProteinProgress = totalProtein / (objProtein / 100);
+  $('.js-pb-protein .pb-label').text(totalProtein +' / '+ objProtein);
+  $('.js-pb-protein .pb-bar').css('width', pbProteinProgress +'%');
 
-  //carbs
-  // var pbCarbs = 0;
-  // var pbCarbsProgress = 0;
-  // for (var i = 0; i < totalCarbs.length; i++) {
-  //   pbCarbs += totalCarbs[i];
-  // }
-  // pbCarbsProgress = pbCarbs / (objCarbs / 100);
-  // $('.js-pb-carbs .pb-label').text(pbCarbs +' / '+ objCarbs);
-  // $('.js-pb-carbs .pb-bar').css('width', pbCarbsProgress +'%');
+  //fat progress bar
+  var pbFatProgress = 0;
+  pbFatProgress = totalFat / (objFat / 100);
+  $('.js-pb-fat .pb-label').text(totalFat +' / '+ objFat);
+  $('.js-pb-fat .pb-bar').css('width', pbFatProgress +'%');
+
+  //carbs progress bar
+  var pbCarbsProgress = 0;
+  pbCarbsProgress = totalCarbs / (objCarbs / 100);
+  $('.js-pb-carbs .pb-label').text(totalCarbs +' / '+ objCarbs);
+  $('.js-pb-carbs .pb-bar').css('width', pbCarbsProgress +'%');
 
   //price
-  // var orderPrice = 0;
-  // for (var i = 0; i < totalPrice.length; i++) {
-  //   orderPrice += totalPrice[i];
-  // }
-  // $('.js-total').text('Total: '+ orderPrice.toFixed(2) +' €');
+  $('.js-total').text('Total: '+ totalPrice.toFixed(2) +' €');
 
-  enableDisableBuyButton();
+  //enable disable buy button
+  enableDisableBuyButton(totalPrice);
 }
 
 function addMeal() {
@@ -105,7 +109,7 @@ function removeMeal(idMeal) {
   $('#'+ idMeal).remove(); //view delete meal
 
   //update
-  updateStatus();
+  update();
 }
 
 function getProducts(idMeal) {
@@ -190,7 +194,7 @@ function addProduct(response) {
   msg('Añadido: '+ response.name, 1000);
 
   //update
-  updateStatus();
+  update();
 }
 
 function removeProduct(idMeal, idProduct) {
@@ -213,7 +217,7 @@ function removeProduct(idMeal, idProduct) {
   $('#'+ idProduct).remove();
 
   //update
-  updateStatus();
+  update();
 }
 
 function addAmount(idMeal, idProduct) {
@@ -246,7 +250,7 @@ function addAmount(idMeal, idProduct) {
   enableDisableSubstractButton(amount, idProduct);
 
   //update
-  updateStatus();
+  update();
 }
 
 function substractAmount(idMeal, idProduct) {
@@ -279,7 +283,7 @@ function substractAmount(idMeal, idProduct) {
   enableDisableSubstractButton(amount, idProduct);
 
   //update
-  updateStatus();
+  update();
 }
 
 function enableDisableSubstractButton(amount, idProduct) {
@@ -294,19 +298,14 @@ function enableDisableSubstractButton(amount, idProduct) {
   }
 }
 
-function enableDisableBuyButton() {
-  var total = 0;
-  // for (var i = 0; i < totalPrice.length; i++) {
-  //   total += totalPrice[i];
-  // }
-
-  if (total === 0) {
-    $('.buy').addClass('disabled');
-    $('.buy').addClass('grey');
+function enableDisableBuyButton(totalPrice) {
+  if (totalPrice === 0) {
+    $('.js-buy').addClass('disabled');
+    $('.js-buy').addClass('grey');
   }
   else {
-    $('.buy').removeClass('disabled');
-    $('.buy').removeClass('grey');
+    $('.js-buy').removeClass('disabled');
+    $('.js-buy').removeClass('grey');
   }
 }
 
@@ -345,6 +344,8 @@ function loadListeners() {
     idProduct = event.currentTarget.parentElement.parentElement.id;
     removeProduct(idMeal, idProduct);
   });
+
+  $('.js-order').on('click', '.js-buy', buy);
 }
 
 function loadModal() {
@@ -355,18 +356,12 @@ function setActiveClassToCurrentNavLink() {
   $('.js-nav-link-order').addClass('active');
 }
 
-function getObjectiveCalories() {
-  return parseInt(($('.js-pb-calories .pb-label').text()).split('/')[1]);
-}
-
-function getObjectiveProtein() {
-  return parseInt(($('.js-pb-protein .pb-label').text()).split('/')[1]);
-}
-
-function getObjectiveFat() {
-  return parseInt(($('.js-pb-fat .pb-label').text()).split('/')[1]);
-}
-
-function getObjectiveCarbs() {
-  return parseInt(($('.js-pb-carbs .pb-label').text()).split('/')[1]);
+function buy() {
+  console.log('hey!');
+  // $.ajax({
+  //   type: 'POST',
+  //   url: '/api/orders',
+  //   data: order
+  //   success: //blablabla
+  // });
 }
