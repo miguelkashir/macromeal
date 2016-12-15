@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root to: "site#index"
-  get '/objective', to: 'site#objective'
-  post '/users/generate_objective', to: 'users#generate_objective'
-  resource :users
+
   devise_for :users
+  resource :users
+  post '/users/generate_objective', to: 'users#generate_objective'
+  get '/objective', to: 'site#objective'
 
   resources :orders
 
