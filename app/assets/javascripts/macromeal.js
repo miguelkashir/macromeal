@@ -5,7 +5,6 @@ function initialize() {
   $('.button-collapse').sideNav();
   $('.button-collapse').click(removeOverlay);
   $('select').material_select();
-  $('.parallax').parallax();
   $('.collapsible').collapsible();
 }
 

@@ -1,6 +1,8 @@
 $(document).ready(initialize);
 
 function initialize() {
-  $('.js-nav-links li').removeClass('active');
+  setActiveClassToCurrentNavLink();
+}
+function setActiveClassToCurrentNavLink() {
   $('.js-nav-link-login').addClass('active');
 }

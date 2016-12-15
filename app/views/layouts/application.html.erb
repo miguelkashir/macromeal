@@ -7,15 +7,14 @@
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <script src="https://use.fontawesome.com/2144aabe16.js"></script>
 </head>
 <body>
-
   <%= render 'layouts/navbar' %>
   <%= render 'layouts/alerts' %>
   <div class="container-fluid">
     <%= yield %>
   </div>
   <%= render 'layouts/footer' %>
-
 </body>
 </html>

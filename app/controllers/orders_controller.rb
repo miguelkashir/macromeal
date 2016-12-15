@@ -9,7 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    meals = params[:meals]
-    binding.pry
+    # meals = JSON.parse params[:meals]
+    # meals.each do |meal|
+    #   meal.each do |key, value|
+    #   end
+    # end
+    # binding.pry
   end
 end

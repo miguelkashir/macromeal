@@ -1,13 +1,13 @@
 <%= javascript_include_tag "/assets/mm_orders" %>
 <div class="row">
   <div class="col s12">
-    <h1>Pedido #<%= @order.id %></h1>
+    <h3>Pedido #<%= @order.id %></h3>
     <ul class="collection">
       <li class="collection-item"><strong>Fecha:</strong> <%= @order.created_at %></li>
       <li class="collection-item"><strong>Total:</strong> €</li>
     </ul>
     <% @meals.each do |meal| %>
-      <h3>Comida #</strong> <%= meal.id %></h3>
+      <h5>Comida #</strong> <%= meal.id %></h5>
       <ul class="collection">
         <% meal.products.each do |product| %>
           <li class="collection-item"><strong>Producto:</strong> <%= product.name %></li>

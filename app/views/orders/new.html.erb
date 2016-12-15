@@ -2,15 +2,15 @@
 <% if (current_user.calories == 0 || current_user.calories == nil) %>
 <div class="row">
   <div class="col s12">
-    <h2>Pedido</h2>
+    <h3>Pedido</h3>
     <p>Necesitas generar tu objetivo para pedir!</p>
-    <p><%= link_to 'Generar objetivo', users_generate_objective_path, class:'waves-effect waves-light btn' %></p>
+    <p><%= link_to 'Generar objetivo', '/objective', class:'waves-effect waves-light btn' %></p>
   </div>
 </div>
 <% else %>
 <div class="row">
   <div class="col s12">
-    <h2>Pedido</h2>
+    <h3>Pedido</h3>
     <strong>Calorías</strong>
     <div class="pb js-pb-calories">
       <div class="pb-bar">
@@ -71,7 +71,7 @@
       <!-- modal -->
       <div class="modal modal-fixed-footer">
         <div class="modal-content">
-          <h4>Productos</h4>
+          <h3>Productos</h3>
           <ul class="collection js-products">
             <!-- js content -->
           </ul>

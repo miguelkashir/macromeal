@@ -1,6 +1,10 @@
 $(document).ready(initialize);
 
 function initialize() {
-  $('.js-nav-links li').removeClass('active');
+  $('.parallax').parallax();
+  setActiveClassToCurrentNavLink();
+}
+
+function setActiveClassToCurrentNavLink() {
   $('.js-nav-link-home').addClass('active');
 }

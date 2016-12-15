@@ -1,11 +1,11 @@
 <%= javascript_include_tag "/assets/mm_profile" %>
 <div class="row">
   <div class="col s12">
-    <h1>Perfil</h1>
+    <h3>Perfil</h3>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
-    <h3>Datos de cuenta</h3>
+    <h5>Datos de cuenta</h5>
     <div class="field">
       <label for="user[email]">Email</label>
       <%= f.email_field :email, autofocus: true %>
@@ -30,8 +30,7 @@
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
-    <h3>Datos personales</h3>
-
+    <h5>Datos personales</h5>
 
     <div class="field">
       <label for="user[name]">Nombre</label>
@@ -63,7 +62,7 @@
       <%= f.text_field :phone, autocomplete: "on", type:'tel' %>
     </div>
 
-    <h3>Datos físicos</h3>
+    <h5>Datos físicos</h5>
 
     <div class="field">
       <label for="user[sex]">Sexo</label>
@@ -116,7 +115,7 @@
 
     <br>
 
-    <h3>Eliminar cuenta</h3>
+    <h5>Eliminar cuenta</h5>
     <div>
       <p>Quieres dar de baja tu cuenta de <b>macromeal</b>? :(</p>
       <%= button_to "Eliminar cuenta",
