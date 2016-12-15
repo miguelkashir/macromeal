@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(user_id: current_user.id, id: params[:id])
-    @meals = @order.meals
   end
 
   def create
@@ -31,7 +30,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    # 
-
+    redirect_to "/orders/#{order.id}"
   end
+
 end

@@ -5,7 +5,13 @@
     <% if @orders.length > 0 %>
       <ul class="collection">
         <% @orders.each do |order| %>
-          <%= link_to "Pedido #{order.id} / Fecha: #{order.created_at} / Total: €", "/orders/#{order.id}", class: 'collection-item' %>
+          <% total = 0 %>
+          <% order.meals.each do |meal| %>
+            <% meal.meal_products.each do |product| %>
+              <% total += product.price %>
+            <% end %>
+          <% end %>
+          <%= link_to "Pedido / Fecha: #{order.created_at.strftime("%d-%m-%Y")} / Total: #{total} €", "/orders/#{order.id}", class: 'collection-item' %>
         <% end %>
       </ul>
     <% else %>

@@ -29,6 +29,7 @@ Macromeal is the web application of a food delivery business, with the ability o
 |:-:|
 |**id** :: *primary_key*|
 |**meal_id** :: foreign_key|
+|**product_id** :: foreign_key|
 |**amount** :: *integer*|
 |**price** :: *float*|
 

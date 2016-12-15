@@ -1,16 +1,28 @@
 <%= javascript_include_tag "/assets/mm_orders" %>
 <div class="row">
   <div class="col s12">
-    <h3>Pedido #<%= @order.id %></h3>
+    <h3>Pedido</h3>
     <ul class="collection">
-      <li class="collection-item"><strong>Fecha:</strong> <%= @order.created_at %></li>
-      <li class="collection-item"><strong>Total:</strong> €</li>
+      <li class="collection-item">
+        <strong>Fecha:</strong> <%= @order.created_at.strftime("%d-%m-%Y") %>
+      </li>
+      <% total = 0 %>
+      <% @order.meals.each do |meal| %>
+        <% meal.meal_products.each do |product| %>
+          <% total += product.price %>
+        <% end %>
+      <% end %>
+      <li class="collection-item"><strong>Total: <%= total %></strong> €</li>
     </ul>
-    <% @meals.each do |meal| %>
-      <h5>Comida #</strong> <%= meal.id %></h5>
+    <h5>Productos</h5>
+    <% @order.meals.each do |meal| %>
       <ul class="collection">
         <% meal.products.each do |product| %>
-          <li class="collection-item"><strong>Producto:</strong> <%= product.name %></li>
+        <li class="collection-item">
+          <strong>Producto:</strong> <%= product.name %> /
+           <strong>Cantidad:</strong> <!-- fix this --> gr /
+          <strong>Precio:</strong> <!-- fix this --> €
+        </li>
         <% end %>
       </ul>
     <% end %>
