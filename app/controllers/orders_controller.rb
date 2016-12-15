@@ -7,4 +7,9 @@ class OrdersController < ApplicationController
     @order = Order.find_by(user_id: current_user.id, id: params[:id])
     @meals = @order.meals
   end
+
+  def create
+    meals = params[:meals]
+    binding.pry
+  end
 end

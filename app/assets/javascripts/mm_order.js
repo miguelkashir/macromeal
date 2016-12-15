@@ -45,26 +45,22 @@ function update() {
   //calories progress bar
   var pbCaloriesProgress = 0;
   pbCaloriesProgress = totalCalories / (objCalories / 100);
-  $('.js-pb-calories .pb-label').text(totalCalories +' / '+ objCalories);
-  $('.js-pb-calories .pb-bar').css('width', pbCaloriesProgress +'%');
+  paintProgressBar('js-pb-calories', objCalories, totalCalories, pbCaloriesProgress);
 
   //protein progress bar
   var pbProteinProgress = 0;
   pbProteinProgress = totalProtein / (objProtein / 100);
-  $('.js-pb-protein .pb-label').text(totalProtein +' / '+ objProtein);
-  $('.js-pb-protein .pb-bar').css('width', pbProteinProgress +'%');
+  paintProgressBar('js-pb-protein', objProtein, totalProtein, pbProteinProgress);
 
   //fat progress bar
   var pbFatProgress = 0;
   pbFatProgress = totalFat / (objFat / 100);
-  $('.js-pb-fat .pb-label').text(totalFat +' / '+ objFat);
-  $('.js-pb-fat .pb-bar').css('width', pbFatProgress +'%');
+  paintProgressBar('js-pb-fat', objFat, totalFat, pbFatProgress);
 
   //carbs progress bar
   var pbCarbsProgress = 0;
   pbCarbsProgress = totalCarbs / (objCarbs / 100);
-  $('.js-pb-carbs .pb-label').text(totalCarbs +' / '+ objCarbs);
-  $('.js-pb-carbs .pb-bar').css('width', pbCarbsProgress +'%');
+  paintProgressBar('js-pb-carbs', objCarbs, totalCarbs, pbCarbsProgress);
 
   //price
   $('.js-total').text('Total: '+ totalPrice.toFixed(2) +' €');
@@ -357,11 +353,37 @@ function setActiveClassToCurrentNavLink() {
 }
 
 function buy() {
-  console.log('hey!');
-  // $.ajax({
-  //   type: 'POST',
-  //   url: '/api/orders',
-  //   data: order
-  //   success: //blablabla
-  // });
+  $.ajax({
+    type: 'POST',
+    url: '/orders',
+    data: order,
+    success: function() {
+      console.log('success!');
+    },
+    error: function() {
+      console.log('error!');
+    }
+  });
+}
+
+function paintProgressBar(selector, objective, total, pbProgress) {
+  $('.'+ selector +' .pb-label').text(total +' / '+ objective);
+  $('.'+ selector +' .pb-bar').css('width', pbProgress +'%');
+
+  if (pbProgress < 50) {
+    $('.'+ selector +' .pb-bar').css('background-color', '#8bc34a');
+  }
+  else if (pbProgress > 50 && pbProgress < 75) {
+    $('.'+ selector +' .pb-bar').css('background-color', '#ffee58');
+  }
+  else if (pbProgress > 75 && pbProgress < 90) {
+    $('.'+ selector +' .pb-bar').css('background-color', '#ff7043');
+  }
+  else {
+    $('.'+ selector +' .pb-bar').css('background-color', '#b71c1c');
+
+    if (pbProgress > 100) {
+      msg('Cuidado! Estás sobrepasando tu límite!', 2000);
+    }
+  }
 }

@@ -30,22 +30,22 @@ class User < ApplicationRecord
       mb *= 1.9 #hiperactive
     end
 
-    mb #return
+    mb.to_i #return
   end
 
   def calculate_protein(cals, protein)
     cals /= 4 #1 prot gr = 4 cals
-    cals * (protein / 100)
+    (cals * (protein / 100)).to_i
   end
 
   def calculate_fat(cals, fat)
     cals /= 9 #1 fat gr = 4 cals
-    cals * (fat / 100)
+    (cals * (fat / 100)).to_i
   end
 
   def calculate_carbs(cals, carbs)
     cals /= 4 #1 carb gr = 4 cals
-    cals * (carbs / 100)
+    (cals * (carbs / 100)).to_i
   end
 
 end
