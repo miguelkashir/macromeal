@@ -353,7 +353,6 @@ function setActiveClassToCurrentNavLink() {
 }
 
 function buy() {
-
   $.ajax({
     type: 'POST',
     url: '/orders',
