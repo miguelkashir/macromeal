@@ -1,11 +1,9 @@
 default: &default
   host: localhost
-  username: kashir
-  password: th3mmpwd
+  username: <%= Rails.application.secrets.username %>
+  password: <%= Rails.application.secrets.password %>
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:

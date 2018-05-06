@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   require 'pry'
 
   before_action :authenticate_user!
-  before_filter :find_user
+  before_action :find_user
 
   def generate_objective
     cals = @user.calculate_calories
